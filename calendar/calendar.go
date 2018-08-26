@@ -1,4 +1,4 @@
-package main
+package calendar
 
 import (
 	"encoding/json"
@@ -10,7 +10,8 @@ import (
 	"strings"
 	"time"
 
-	humanize "github.com/dustin/go-humanize"
+	"github.com/dustin/go-humanize"
+
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -19,7 +20,7 @@ import (
 
 // Retrieve a token, saves the token, then returns the generated client.
 func getClient(config *oauth2.Config) *http.Client {
-	tokFile := "token.json"
+	tokFile := "calendar/token.json"
 	tok, err := tokenFromFile(tokFile)
 	if err != nil {
 		tok = getTokenFromWeb(config)
@@ -69,17 +70,12 @@ func saveToken(path string, token *oauth2.Token) {
 	json.NewEncoder(f).Encode(token)
 }
 
-type evento struct {
-	Titulo  string
-	Sumario string
-	Data    string
-}
-
-var eventos []evento
-
-func UpdateEvents() {
-	eventos = make([]evento, 0, 10)
-	b, err := ioutil.ReadFile("credentials.json")
+// Pool update the event list from google calendar
+func Pool() {
+	if eventList == nil {
+		eventList = make([]Event, 0, 10)
+	}
+	b, err := ioutil.ReadFile("calendar/credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
 		return
@@ -106,15 +102,21 @@ func UpdateEvents() {
 		return
 	}
 	for _, item := range events.Items {
+		event := Event{Summary: strings.Title(strings.ToLower(item.Summary)), Description: item.Description}
 		date := item.Start.DateTime
 		if date == "" {
 			date = item.Start.Date
 		}
 		timeDate, _ := time.Parse(time.RFC3339, date)
-		if strings.Contains(strings.ToLower(item.Summary), "prova") {
-			eventos = append(eventos, evento{item.Summary, item.Description, humanize.Time(timeDate)})
-
+		event.Date = humanize.Time(timeDate)
+		if strings.Contains(event.Summary, "Prova") {
+			event.IsProva = true
 		}
+		if strings.Contains(event.Summary, "Trabalho") {
+			event.IsTrabalho = true
+		}
+
+		eventList = append(eventList, event)
 	}
 
 }

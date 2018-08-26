@@ -1,43 +1,77 @@
-<!-- file: ./views/hello.html -->
+<!DOCTYPE html>
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="static/bulma.min.css">
+    <link rel="stylesheet" href="static/style.css">
 
-    <title>Hello Page</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 </head>
 
 <body>
-    <div class="main">
-        <div class="websites">
-            <h1>Links</h1>
-            <div class="cards"> {{range $site:=.sites}}
-                <div><a href="{{$site}}">{{$site}}</a></div>
-                {{end}}
-            </div>
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column">
+                    <div class="panel">
+                        <p class="panel-heading">Links rapidos</p>
 
-        </div>
-        <div class="box">
-            <h1>Agenda de provas</h1>
-            <ul id="first-list">
-                {{range .eventos}}
+                        {{range $key, $site := .websiteList}}
+                        <div class="panel-block">
+                            <div class="columns">
+                                <div class="column">
+                                    <figure class="image is-64x64">
+                                        <img class="is-rounded" src="{{$site.Icon}}">
+                                    </figure>
+                                </div>
 
-                <li>
-                    <span></span>
-                    <div class="title">{{.Titulo}}</div>
-                    <div class="info">{{.Sumario}}</div>
-                    <div class="time">
-                        <span>{{.Data}}</span>
+                                <a href="{{$site.Url}}" class="column is-two-thirds ">
+                                    <p class="title is-4 mt-6">{{$site.Name}}</p>
+                                    <p class="subtitle is-6 ">{{$site.Description}}</p> </a>
+
+
+                            </div>
+                        </div>
+                        {{end}}
                     </div>
-                </li>
 
-                {{end}}
 
-            </ul>
 
+                </div>
+                <div class="column">
+
+                    <nav class="panel">
+                        <p class="panel-heading">
+                            Agenda
+                        </p>
+
+                        <p class="panel-tabs">
+                            <a class="is-active">Provas</a>
+                            <a>Trabalhos</a>
+                            <a>Aula normal</a>
+
+                        </p>
+                        {{range .eventList}} {{if .IsProva}}
+                        <div class="panel-block ">
+                            <div class="tag is-light mr-10 is-rounded gray-border ">
+                                {{.Date}}
+                            </div>
+                            {{.Summary}}
+
+
+
+                        </div>
+                        {{end}} {{end}}
+
+
+                    </nav>
+                </div>
+            </div>
         </div>
-    </div>
-
+    </section>
 </body>
 
 </html>

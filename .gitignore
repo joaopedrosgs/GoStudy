@@ -1,4 +1,1 @@
-calendar
-credentials.json
-token.json
-sites.json
+*.json
