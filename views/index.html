@@ -1,77 +1,56 @@
-<!DOCTYPE html>
-<html>
+< !DOCTYPE html>
+    <html>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="static/bulma.min.css">
-    <link rel="stylesheet" href="static/style.css">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Inicio</title>
+        <link rel="stylesheet" href="static/bulma.min.css">
+        <link rel="stylesheet" href="static/style.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    </head>
 
-    <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
-</head>
+    <body>
+        <section class="section">
+            <div class="container">
+                <div class="columns">
+                    <div class="column">
+                        <div class="panel">
+                            <p class="panel-heading">Links rapidos</p> { { range $key, $site: =.websiteList } }
 
-<body>
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column">
-                    <div class="panel">
-                        <p class="panel-heading">Links rapidos</p>
+                            <div class="panel-block">
+                                <div class="columns">
+                                    <div class="column">
+                                        <figure class="image is-64x64"><img class="is-rounded" src="{{$site.Icon}}"></figure>
+                                    </div><a href="{{$site.Url}}" class="column is-two-thirds "><p class="title is-4 mt-6">
+                                        { { $site.Name } }
 
-                        {{range $key, $site := .websiteList}}
-                        <div class="panel-block">
-                            <div class="columns">
-                                <div class="column">
-                                    <figure class="image is-64x64">
-                                        <img class="is-rounded" src="{{$site.Icon}}">
-                                    </figure>
-                                </div>
+                                        </p>
+                                        <p class="subtitle is-6 "> { { $site.Description } }
 
-                                <a href="{{$site.Url}}" class="column is-two-thirds ">
-                                    <p class="title is-4 mt-6">{{$site.Name}}</p>
-                                    <p class="subtitle is-6 ">{{$site.Description}}</p> </a>
+                                        </p></a></div>
+                            </div> { { end } }
 
-
-                            </div>
                         </div>
-                        {{end}}
                     </div>
+                    <div class="column">
+                        <nav class="panel">
+                            <p class="panel-heading">Agenda </p>
+                            <p class="panel-tabs"><a class="is-active">Provas</a><a>Trabalhos</a><a>Aula normal</a></p> {
+                            { range .eventList } } { { if .IsProva } }
 
+                            <div class="panel-block ">
+                                <div class="tag is-light mr-10 is-rounded gray-border "> { { .Date } }
 
+                                </div> { { .Summary } }
 
-                </div>
-                <div class="column">
+                            </div> { { end } } { { end } }
 
-                    <nav class="panel">
-                        <p class="panel-heading">
-                            Agenda
-                        </p>
-
-                        <p class="panel-tabs">
-                            <a class="is-active">Provas</a>
-                            <a>Trabalhos</a>
-                            <a>Aula normal</a>
-
-                        </p>
-                        {{range .eventList}} {{if .IsProva}}
-                        <div class="panel-block ">
-                            <div class="tag is-light mr-10 is-rounded gray-border ">
-                                {{.Date}}
-                            </div>
-                            {{.Summary}}
-
-
-
-                        </div>
-                        {{end}} {{end}}
-
-
-                    </nav>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-</body>
+        </section>
+    </body>
 
-</html>
+    </html>
