@@ -3,7 +3,7 @@ package main
 import (
 	"time"
 
-	"github.com/joaopedrosgs/PaginaInicialProvas/calendar"
+	"github.com/joaopedrosgs/GoStudy/calendar"
 
 	"github.com/kataras/iris"
 )

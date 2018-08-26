@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"os/user"
 	"strings"
 	"time"
 
@@ -20,7 +21,11 @@ import (
 
 // Retrieve a token, saves the token, then returns the generated client.
 func getClient(config *oauth2.Config) *http.Client {
-	tokFile := "calendar/token.json"
+	user, err := user.Current()
+	if err != nil {
+		log.Fatal("Failed to get current user: ", err.Error())
+	}
+	tokFile := user.HomeDir + "/.config/goStudy/token.json"
 	tok, err := tokenFromFile(tokFile)
 	if err != nil {
 		tok = getTokenFromWeb(config)
@@ -75,22 +80,26 @@ func Pool() {
 	if eventList == nil {
 		eventList = make([]Event, 0, 10)
 	}
-	b, err := ioutil.ReadFile("calendar/credentials.json")
+	user, err := user.Current()
 	if err != nil {
-		log.Fatalf("Unable to read client secret file: %v", err)
+		log.Fatal("Failed to get current user: ", err.Error())
+	}
+	b, err := ioutil.ReadFile(user.HomeDir + "/.config/goStudy/credentials.json")
+	if err != nil {
+		log.Fatal("Unable to read client secret file: ", err)
 		return
 	}
 
 	config, err := google.ConfigFromJSON(b, calendar.CalendarReadonlyScope)
 	if err != nil {
-		log.Fatalf("Unable to parse client secret file to config: %v", err)
+		log.Fatal("Unable to parse client secret file to config: ", err)
 		return
 	}
 	client := getClient(config)
 
 	srv, err := calendar.New(client)
 	if err != nil {
-		log.Fatalf("Unable to retrieve Calendar client: %v", err)
+		log.Fatal("Unable to retrieve Calendar client: ", err)
 		return
 	}
 
@@ -98,7 +107,7 @@ func Pool() {
 	events, err := srv.Events.List("primary").ShowDeleted(false).
 		SingleEvents(true).TimeMin(t).MaxResults(200).OrderBy("startTime").Do()
 	if err != nil {
-		log.Fatalf("Unable to retrieve next ten of the user's events: %v", err)
+		log.Fatal("Unable to retrieve next ten of the user's events: ", err)
 		return
 	}
 	for _, item := range events.Items {

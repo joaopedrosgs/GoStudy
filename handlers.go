@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/joaopedrosgs/PaginaInicialProvas/calendar"
-	"github.com/joaopedrosgs/PaginaInicialProvas/website"
+	"github.com/joaopedrosgs/GoStudy/calendar"
+	"github.com/joaopedrosgs/GoStudy/website"
 	"github.com/kataras/iris"
 )
 
