@@ -1,4 +1,5 @@
 # Pagina inicial com agenda de provas
+Este programa faz uso da agenda do Google para obter a data das provas, a ideia é que seja iniciado com o sistema e utilizado como pagina inicial do navegador
 ![Alt text](print.png?raw=true "Print")
 
 # Como utilizar:
