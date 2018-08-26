@@ -1,0 +1,297 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    background: white;
+}
+
+.main {
+    width: 960px;
+    margin: 50px auto 0px auto;
+    font-family: "Open Sans", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+ul {
+    list-style: none;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* or 'row', 'row dense', 'column dense' */
+    grid-gap: 10px;
+}
+
+.cards>div>a {
+    padding: 20px;
+    display: block;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid gray;
+    border-radius: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.cards>div>a:hover {
+    background: white
+}
+
+.cards>div>a {
+    color: #119DA4;
+    text-decoration: none;
+}
+
+.calendar {
+    background: white;
+    border-radius: 0px 10px 10px 0px;
+}
+
+.calendar>ul>li {
+    line-height: 40px;
+}
+
+.calendar span {
+    padding: 4px;
+    border-radius: 4px;
+    background: white;
+    border: 1px solid gray;
+    margin-right: 10px;
+}
+
+.box {
+    height: 630px;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 20px;
+    padding-bottom: 40px;
+}
+
+.box ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    transition: all 0.5s linear;
+    top: 0
+}
+
+.box ul:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    border: 1px dashed rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 31px
+}
+
+.box ul li {
+    margin: 20px 60px 60px;
+    position: relative;
+    padding: 10px 20px;
+    background: rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid gray;
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    line-height: 20px;
+    border-left: 3px solid #119DA4;
+}
+
+.box ul li>span {
+    content: "";
+    display: block;
+    width: 0;
+    height: 100%;
+    border: 1px solid #119DA4;
+    position: absolute;
+    top: 0;
+    left: -31px
+}
+
+.box ul li>span:before,
+.box ul li>span:after {
+    content: "";
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #119DA4;
+    position: absolute;
+    left: -6px
+}
+
+.box ul li>span:before {
+    top: -10px
+}
+
+.box ul li>span:after {
+    top: 95%
+}
+
+.box .title {
+    font-weight: 700;
+    margin-bottom: 5px
+}
+
+.box .info {
+    color: rgba(0, 0, 0, 0.6)
+}
+
+.box .info:first-letter {
+    text-transform: capitalize;
+    line-height: 1.7
+}
+
+.box .name {
+    margin-top: 10px;
+    text-transform: capitalize;
+    font-style: italic;
+    text-align: right;
+    margin-right: 20px
+}
+
+.box .time span {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 80%;
+}
+
+.box .time span:first-child {
+    top: -23px
+}

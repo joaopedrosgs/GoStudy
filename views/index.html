@@ -1,0 +1,43 @@
+<!-- file: ./views/hello.html -->
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+
+    <title>Hello Page</title>
+</head>
+
+<body>
+    <div class="main">
+        <div class="websites">
+            <h1>Links</h1>
+            <div class="cards"> {{range $site:=.sites}}
+                <div><a href="{{$site}}">{{$site}}</a></div>
+                {{end}}
+            </div>
+
+        </div>
+        <div class="box">
+            <h1>Agenda de provas</h1>
+            <ul id="first-list">
+                {{range .eventos}}
+
+                <li>
+                    <span></span>
+                    <div class="title">{{.Titulo}}</div>
+                    <div class="info">{{.Sumario}}</div>
+                    <div class="time">
+                        <span>{{.Data}}</span>
+                    </div>
+                </li>
+
+                {{end}}
+
+            </ul>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
