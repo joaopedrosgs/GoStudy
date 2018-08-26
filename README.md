@@ -4,11 +4,13 @@ Este programa faz uso da agenda do Google para obter a data das provas, a ideia 
 
 # Como utilizar:
 
-1. Gere um token de acesso do Google (https://console.developers.google.com/apis/dashboard) e coloque-o na pasta "$HOME/.config/goStudy" em um arquivo chamado token.json da seguinte forma
+1. Gere um token de acesso do Google (https://console.developers.google.com/apis/dashboard) e coloque-o na pasta "$HOME/.config/go-study" em um arquivo chamado token.json da seguinte forma
  
  `{"access_token":"token","expiry":"data"}` 
 
-2. crie o websites.json da pasta "$HOME/.config/goStudy" para adicionar seus sites
+2. Crie o websites.json da pasta "$HOME/.config/go-study" para adicionar seus sites
+3. Copie as pastas static e views para "$HOME/.local/share/go-study"
+
 
    Seja feliz (ou triste, já que tem muita prova)
 

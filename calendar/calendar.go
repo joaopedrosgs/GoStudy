@@ -25,7 +25,7 @@ func getClient(config *oauth2.Config) *http.Client {
 	if err != nil {
 		log.Fatal("Failed to get current user: ", err.Error())
 	}
-	tokFile := user.HomeDir + "/.config/goStudy/token.json"
+	tokFile := user.HomeDir + "/.config/go-study/token.json"
 	tok, err := tokenFromFile(tokFile)
 	if err != nil {
 		tok = getTokenFromWeb(config)
@@ -84,7 +84,7 @@ func Pool() {
 	if err != nil {
 		log.Fatal("Failed to get current user: ", err.Error())
 	}
-	b, err := ioutil.ReadFile(user.HomeDir + "/.config/goStudy/credentials.json")
+	b, err := ioutil.ReadFile(user.HomeDir + "/.config/go-study/credentials.json")
 	if err != nil {
 		log.Fatal("Unable to read client secret file: ", err)
 		return

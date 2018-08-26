@@ -25,7 +25,7 @@ func LoadWebsites() {
 	if err != nil {
 		log.Fatal("Failed to get current user: ", err.Error())
 	}
-	file, err := os.Open(user.HomeDir + "/.config/goStudy/websites.json")
+	file, err := os.Open(user.HomeDir + "/.config/go-study/websites.json")
 	if err != nil {
 		log.Fatal("Failed to read websites.json: ", err.Error())
 		return
