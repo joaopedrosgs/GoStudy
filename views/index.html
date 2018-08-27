@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="static/bulma.min.css">
     <link rel="stylesheet" href="static/style.css">
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+    <script src="static/timeago.min.js"></script>
+    <script src="static/timeago.locales.min.js"></script>
+
+
 </head>
 
 <body>
@@ -41,9 +45,9 @@
                         {{ range .eventList }} {{ if .IsProva }}
 
                         <div class="panel-block ">
-                            <div class="tag is-light mr-10 is-rounded gray-border "> {{ .Date }}
+                            <time class="tag is-light mr-10 is-rounded gray-border timeago" datetime=" {{ .Date }}">
 
-                            </div> {{ .Summary }}
+                            </time> {{ .Summary }}
 
                         </div>
                         {{ end }} {{ end }}
@@ -53,6 +57,9 @@
             </div>
         </div>
     </section>
+    <script>
+        timeago().render(document.querySelectorAll('.timeago'));
+    </script>
 </body>
 
 </html>

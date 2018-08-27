@@ -11,8 +11,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/dustin/go-humanize"
-
 	"golang.org/x/net/context"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/google"
@@ -77,9 +75,8 @@ func saveToken(path string, token *oauth2.Token) {
 
 // Pool update the event list from google calendar
 func Pool() {
-	if eventList == nil {
-		eventList = make([]Event, 0, 10)
-	}
+	eventList = make([]Event, 0, 10)
+
 	user, err := user.Current()
 	if err != nil {
 		log.Fatal("Failed to get current user: ", err.Error())
@@ -116,8 +113,8 @@ func Pool() {
 		if date == "" {
 			date = item.Start.Date
 		}
-		timeDate, _ := time.Parse(time.RFC3339, date)
-		event.Date = humanize.Time(timeDate)
+
+		event.Date = date
 		if strings.Contains(event.Summary, "Prova") {
 			event.IsProva = true
 		}
