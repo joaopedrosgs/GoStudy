@@ -24,12 +24,6 @@ Este programa faz uso da agenda do Google para obter a data das provas, a ideia 
         "Description": "Globo.com"
     },
     {
-        "Icon": "http://icons.iconarchive.com/icons/marcus-roberto/google-play/256/Google-Drive-icon.png",
-        "Name": "GDrive PET",
-        "Url": "https://drive.google.com/drive/folders/0B8Gfc8vlUUjsN0xEV1otaFpvZXM",
-        "Description": "Drive do PET"
-    },
-    {
         "Icon": "https://hp.imguol.com.br/c/home/interacao/facebook/logo-uol.png",
         "Name": "UOL",
         "Url": "https://www.uol.com.br",
